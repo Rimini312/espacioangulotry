@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Espacio Ángulo — conversación, escucha y creación</title>
-  <meta name="description" content="Encuentros online de conversación, escucha y creación. Una hora para pensar en voz alta y mirar desde otro ángulo.">
-  <meta name="theme-color" content="#f3efe6">
+  <meta name="description" content="Encuentros online de conversación, escucha y creación para ordenar una situación, traer una pregunta y mirarla desde otro lugar.">
+  <meta name="theme-color" content="#f2ecdf">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -27,7 +27,7 @@
     <section class="hero">
       <div class="site-wrap hero-grid">
         <div>
-          <p class="eyebrow">online · audio · 60 minutos</p>
+          <p class="eyebrow">online · audio · sesión individual</p>
           <h1><span>Espacio</span><span>Ángulo</span></h1>
           <p class="hero-text">Encuentros de conversación, escucha y creación para ordenar una situación, traer una pregunta y mirarla desde otro lugar.</p>
           <div class="hero-actions">
@@ -39,10 +39,16 @@
           <p class="quote">Una conversación seria, sin ruido, para pensar con más precisión.</p>
           <ul class="side-list">
             <li>Trae una decisión, un bucle, una etapa o una inquietud.</li>
-            <li>La sesión se realiza online, por audio.</li>
+            <li>El encuentro se realiza online, íntegramente por audio.</li>
             <li>No hace falta mostrarse. Basta con estar presente y hablar.</li>
           </ul>
         </aside>
+      </div>
+    </section>
+
+    <section class="tag-band" aria-label="Temas posibles">
+      <div class="site-wrap tag-scroll" aria-hidden="false">
+        <div id="tag-track" class="tag-track"></div>
       </div>
     </section>
 
@@ -53,11 +59,11 @@
           <h2>Un espacio para mirar desde otro ángulo.</h2>
         </div>
         <div>
-          <p class="lead">Espacio Ángulo es una sesión individual online de conversación conducida. No se trata de recibir fórmulas, frases hechas ni soluciones automáticas. Se trata de poner lenguaje, escuchar con atención y abrir una perspectiva distinta sobre lo que traes.</p>
+          <p class="lead">Espacio Ángulo es una sesión individual online de conversación conducida por una persona. No se trata de recibir fórmulas o frases: se trata de poner lenguaje, escuchar con atención y ver una perspectiva distinta sobre lo que traes.</p>
           <div class="micro-grid">
             <article class="micro-card">
               <h3>Escucha</h3>
-              <p>Una hora para decirlo sin convertirlo inmediatamente en consejo, diagnóstico o etiqueta.</p>
+              <p>Una hora para decirlo sin convertirlo inmediatamente en consejo rápido o etiqueta.</p>
             </article>
             <article class="micro-card">
               <h3>Perspectiva</h3>
@@ -76,11 +82,10 @@
       <div class="site-wrap two-col">
         <div>
           <p class="kicker">Formato</p>
-          <h2>Audio online. 60 minutos. <span data-price>60 €</span>.</h2>
+          <h2>Audio online · sesión de <span data-duration>una hora</span> · <span data-price>60 €</span>.</h2>
         </div>
         <div>
-          <p class="lead">El encuentro se realiza por audio. Tras solicitar la cita y completar el pago, recibirás un email de confirmación con el enlace de la sesión. Si el horario solicitado no pudiera confirmarse, se propondrá una alternativa o se realizará la devolución íntegra.</p>
-          <p class="fine-print">Servicio conversacional no sanitario. No realizo terapia, psicoterapia, diagnóstico ni tratamiento psicológico. No sustituye atención médica, psicológica o psiquiátrica.</p>
+          <p class="lead">El encuentro es íntegramente por audio mediante llamada online. Tras solicitar la cita y completar el pago, recibirás un email de confirmación con el enlace de la sesión.</p>
         </div>
       </div>
     </section>
@@ -91,9 +96,8 @@
           <p class="kicker">Concertar cita</p>
           <h2>Solicita un encuentro.</h2>
           <div class="price" data-price>60 €</div>
-          <p class="meta-line"><strong data-duration>60 minutos</strong> · online · audio</p>
+          <p class="meta-line"><strong data-duration>una hora</strong> · online · audio</p>
           <p class="meta-line">La solicitud queda registrada antes del pago. Después se abrirá la página segura de Stripe.</p>
-          <p class="fine-print">Para activar el formulario y el pago, sustituye los enlaces de ejemplo en <code>assets/js/config.js</code>.</p>
         </div>
 
         <form id="booking-form" class="form" method="post">
@@ -121,28 +125,24 @@
 
           <div class="field-row">
             <div class="field">
-              <label for="alt-date">Día alternativo</label>
+              <label for="alt-date">Otra opción de día</label>
               <input id="alt-date" name="dia_alternativo" type="date">
             </div>
             <div class="field">
-              <label for="alt-time">Hora alternativa</label>
+              <label for="alt-time">Otra opción de hora</label>
               <input id="alt-time" name="hora_alternativa" type="time">
             </div>
           </div>
 
           <div class="field">
             <label for="note">Nota breve opcional</label>
-            <textarea id="note" name="nota" placeholder="Describe de forma general qué te gustaría traer al encuentro. No incluyas información médica o clínica."></textarea>
+            <textarea id="note" name="nota" placeholder="Describe de forma general qué te gustaría traer al encuentro."></textarea>
           </div>
 
           <div class="checks">
             <label class="check">
               <input name="privacidad_condiciones" type="checkbox" required>
-              <span>He leído y acepto la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a>, las <a href="condiciones.html" target="_blank" rel="noopener">condiciones del servicio</a> y la información sobre <a href="desistimiento.html" target="_blank" rel="noopener">desistimiento</a>.</span>
-            </label>
-            <label class="check">
-              <input name="servicio_no_sanitario" type="checkbox" required>
-              <span>Entiendo que este es un servicio conversacional no sanitario y que no sustituye atención médica, psicológica o psiquiátrica.</span>
+              <span>He leído y acepto la <button type="button" class="legal-link" data-modal-target="legal-privacidad">política de privacidad</button>, las <button type="button" class="legal-link" data-modal-target="legal-condiciones">condiciones del servicio</button> y la información sobre <button type="button" class="legal-link" data-modal-target="legal-desistimiento">desistimiento</button>.</span>
             </label>
             <label class="check">
               <input name="inicio_servicio" type="checkbox" required>
@@ -162,14 +162,77 @@
     <div class="site-wrap footer-inner">
       <div>© <span data-year></span> Espacio Ángulo</div>
       <nav aria-label="Legal">
-        <a href="aviso-legal.html">Aviso legal</a>
-        <a href="privacidad.html">Privacidad</a>
-        <a href="condiciones.html">Condiciones</a>
-        <a href="desistimiento.html">Desistimiento</a>
-        <a href="cookies.html">Cookies</a>
+        <button type="button" data-modal-target="legal-aviso">Aviso legal</button>
+        <button type="button" data-modal-target="legal-privacidad">Privacidad</button>
+        <button type="button" data-modal-target="legal-condiciones">Condiciones</button>
+        <button type="button" data-modal-target="legal-desistimiento">Desistimiento</button>
+        <button type="button" data-modal-target="legal-cookies">Cookies</button>
       </nav>
     </div>
   </footer>
+
+  <div id="legal-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <h2 id="legal-modal-title">Información</h2>
+        <button type="button" class="modal-close" aria-label="Cerrar" data-modal-close>×</button>
+      </div>
+      <div id="legal-modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <div class="legal-templates" aria-hidden="true">
+    <section id="legal-aviso" data-title="Aviso legal">
+      <p><strong>Titular:</strong> Espacio Ángulo. Los datos fiscales completos se facilitarán en la documentación de contratación y facturación correspondiente.</p>
+      <p><strong>Contacto:</strong> mediante el formulario de la web.</p>
+      <h3>Objeto</h3>
+      <p>Esta web informa y permite solicitar encuentros online de conversación, escucha y creación.</p>
+      <h3>Naturaleza del servicio</h3>
+      <p>Espacio Ángulo ofrece un servicio conversacional y no sanitario. No se realizan terapia, psicoterapia, diagnóstico, tratamiento psicológico ni intervención médica o sanitaria. El servicio no sustituye atención médica, psicológica o psiquiátrica.</p>
+      <h3>Uso de la web</h3>
+      <p>La persona usuaria se compromete a utilizar la web de forma lícita, correcta y respetuosa, sin introducir datos falsos ni realizar usos que puedan afectar al funcionamiento del sitio.</p>
+    </section>
+
+    <section id="legal-privacidad" data-title="Política de privacidad">
+      <p><strong>Responsable:</strong> Espacio Ángulo. Los datos fiscales completos se facilitarán en la documentación de contratación y facturación correspondiente.</p>
+      <h3>Datos tratados</h3>
+      <p>Se recogen los datos que la persona introduce en el formulario: nombre, email, fecha y hora solicitadas, horario alternativo y nota opcional.</p>
+      <h3>Finalidad</h3>
+      <p>Gestionar solicitudes de encuentro, confirmar disponibilidad, comunicar información relacionada con la sesión y mantener el registro básico de la contratación.</p>
+      <h3>Base jurídica</h3>
+      <p>La base del tratamiento es la solicitud de prestación de servicio y la aceptación de las condiciones aplicables.</p>
+      <h3>Conservación</h3>
+      <p>Los datos se conservarán durante el tiempo necesario para gestionar la solicitud, la sesión y las posibles obligaciones administrativas o legales derivadas.</p>
+      <h3>Destinatarios</h3>
+      <p>Podrán intervenir proveedores técnicos necesarios para el funcionamiento de la web, formularios, comunicación y pagos, como servicios de formulario y pasarela de pago.</p>
+      <h3>Derechos</h3>
+      <p>Puedes solicitar acceso, rectificación, supresión, oposición, limitación o portabilidad de tus datos mediante el canal de contacto habilitado.</p>
+    </section>
+
+    <section id="legal-condiciones" data-title="Condiciones del servicio">
+      <h3>Descripción</h3>
+      <p>El servicio consiste en un encuentro individual online, íntegramente por audio, centrado en conversación, escucha y creación.</p>
+      <h3>Duración y precio</h3>
+      <p>La duración ordinaria es de una hora. El precio inicial es de 60 €, salvo que se indique otra cantidad antes de contratar.</p>
+      <h3>Confirmación de cita</h3>
+      <p>La solicitud queda sujeta a disponibilidad. Tras recibir la solicitud y el pago, se enviará un email de confirmación. Si el horario solicitado no pudiera confirmarse, se propondrá una alternativa o se realizará la devolución íntegra.</p>
+      <h3>Cancelaciones</h3>
+      <p>La cita podrá reprogramarse si se solicita con al menos 24 horas de antelación. La no asistencia sin aviso podrá considerarse sesión realizada.</p>
+      <h3>Límites</h3>
+      <p>El servicio no es sanitario, no es de urgencia y no está indicado para situaciones de crisis, riesgo personal o malestar que requiera atención profesional sanitaria.</p>
+    </section>
+
+    <section id="legal-desistimiento" data-title="Desistimiento">
+      <p>En la contratación online de servicios puede existir derecho de desistimiento durante 14 días naturales, de acuerdo con la normativa de consumidores y usuarios.</p>
+      <p>Si solicitas que el servicio se preste en una fecha acordada antes de que termine ese plazo, aceptas expresamente el inicio de la prestación. Una vez realizada íntegramente la sesión, el derecho de desistimiento respecto a esa sesión queda perdido.</p>
+      <p>Si la cita no pudiera confirmarse en el horario solicitado, se propondrá una alternativa o se realizará la devolución íntegra.</p>
+    </section>
+
+    <section id="legal-cookies" data-title="Política de cookies">
+      <p>Esta web está diseñada para funcionar sin cookies propias no técnicas. Puede utilizar servicios externos necesarios para formularios o pagos, que pueden aplicar sus propias políticas técnicas y de privacidad.</p>
+      <p>Si en el futuro se añaden herramientas de analítica, publicidad o seguimiento, se actualizará esta información y se solicitará el consentimiento correspondiente cuando sea necesario.</p>
+    </section>
+  </div>
 
   <script src="assets/js/config.js"></script>
   <script src="assets/js/main.js"></script>

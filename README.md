@@ -1,65 +1,69 @@
-# Espacio Ángulo — landing para GitHub Pages
+# Espacio Ángulo — web estática
 
-Web estática responsive para GitHub Pages.
-
-## Archivos importantes
-
-- `index.html`: landing principal y formulario.
-- `assets/css/style.css`: estética, responsive móvil/escritorio.
-- `assets/js/config.js`: pega aquí tus enlaces reales de Formspree y Stripe.
-- `assets/js/main.js`: envío del formulario y redirección al pago.
-- `aviso-legal.html`, `privacidad.html`, `condiciones.html`, `desistimiento.html`, `cookies.html`: textos legales base.
-
-## Configuración rápida
-
-### 1. Formulario
-
-Crea una cuenta/proyecto en Formspree y copia tu endpoint, por ejemplo:
-
-```js
-formEndpoint: "https://formspree.io/f/abcdwxyz"
-```
-
-Pégalo en `assets/js/config.js`.
-
-### 2. Pago Stripe / Apple Pay
-
-Crea un Payment Link en Stripe con importe 60 €. Si tienes Apple Pay activado y Stripe lo permite en tu cuenta/dispositivo/navegador, aparecerá como método disponible.
-
-Pega el enlace en `assets/js/config.js`:
-
-```js
-stripePaymentLink: "https://buy.stripe.com/..."
-```
-
-### 3. Datos legales
-
-Antes de publicar, sustituye en las páginas legales:
-
-- `[NOMBRE COMPLETO / RAZÓN SOCIAL]`
-- `[NIF/CIF]`
-- `[DOMICILIO FISCAL]`
-- `[EMAIL DE CONTACTO]`
-
-Revisa especialmente la parte de facturación y desistimiento con un gestor si vas a cobrar desde el primer día.
+Web preparada para GitHub Pages.
 
 ## Publicar en GitHub Pages
 
-1. Crea un repositorio en GitHub, por ejemplo `espacio-angulo`.
-2. Sube todos estos archivos a la raíz del repositorio.
-3. Ve a `Settings > Pages`.
-4. En `Build and deployment`, elige `Deploy from a branch`.
-5. Rama: `main`, carpeta: `/root`.
-6. Guarda. GitHub generará una URL pública.
+1. Sube el contenido de esta carpeta al repositorio.
+2. En GitHub: `Settings > Pages`.
+3. Source: `Deploy from a branch`.
+4. Branch: `main` y carpeta `/root`.
+5. Guarda y espera a que GitHub publique la URL.
 
-## Flujo actual de la web
+## Configurar formulario
 
-1. La persona rellena el formulario.
-2. El formulario se envía a Formspree.
-3. Si se envía bien, la web redirige a Stripe.
-4. Tú recibes la solicitud por email y compruebas el pago en Stripe.
-5. Confirmas manualmente la cita y envías el enlace de audio.
+1. Crea cuenta en Formspree.
+2. Crea un formulario nuevo.
+3. Copia el endpoint tipo `https://formspree.io/f/abcdwxyz`.
+4. Pégalo en:
 
-## Nota
+```js
+assets/js/config.js
+formEndpoint: "https://formspree.io/f/abcdwxyz"
+```
 
-La web no usa calendario visible ni servidor propio. Es deliberadamente sencilla para validar el proyecto sin montar una máquina demasiado grande desde el primer día.
+Formspree recibe los datos del formulario y los envía al email configurado en tu cuenta.
+
+## Configurar pago
+
+1. Crea cuenta en Stripe.
+2. Crea un producto: `Encuentro online · Espacio Ángulo`.
+3. Precio: `60 €`.
+4. Crea un `Payment Link`.
+5. Copia el enlace y pégalo en:
+
+```js
+assets/js/config.js
+stripePaymentLink: "https://buy.stripe.com/..."
+```
+
+La web añade automáticamente un código de solicitud al enlace de Stripe usando `client_reference_id`, para cruzar el pago con el formulario.
+
+## Agenda pública
+
+Edita:
+
+```txt
+data/agenda.json
+```
+
+Ejemplo:
+
+```json
+{
+  "ocupados": [
+    "2026-06-25T16:00",
+    "2026-06-27T12:00"
+  ],
+  "etiquetas": [
+    "traer el bucle",
+    "ordenar una decisión"
+  ]
+}
+```
+
+No guardes nombres, emails ni notas en `agenda.json`, porque es público.
+
+## Legal
+
+Los textos legales están integrados como ventanas modales en `index.html`. Revísalos con gestor cuando vayas a cobrar de forma habitual.
