@@ -1,3 +1,12 @@
+
+@font-face {
+  font-family: "EspacioGaramond";
+  src: url("../fonts/GARA.TTF") format("truetype");
+  font-weight: 300 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --cream: #f2ecdf;
   --cream-soft: #fbf8ef;
@@ -53,7 +62,7 @@ button, input, textarea, select { font: inherit; }
 
 .hero { min-height: calc(82vh - 70px); display: grid; align-items: center; padding: clamp(62px, 9vw, 112px) 0 clamp(42px, 7vw, 72px); }
 .hero-inner { text-align: left; }
-h1 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: clamp(52px, 12vw, 132px); line-height: .92; letter-spacing: -0.052em; color: var(--olive); white-space: nowrap; }
+h1 { margin: 0; font-family: "EspacioGaramond", "Apple Garamond Light", "Apple Garamond", Garamond, Georgia, "Times New Roman", serif; font-weight: 300; font-size: clamp(54px, 12.2vw, 138px); line-height: .94; letter-spacing: 0.012em; word-spacing: 0.055em; color: var(--olive); white-space: nowrap; }
 .hero-text { max-width: 780px; margin: 28px 0 0; font-size: clamp(18px, 2.15vw, 26px); line-height: 1.56; color: var(--muted); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
 
@@ -138,7 +147,7 @@ input:focus, textarea:focus, select:focus { border-color: var(--olive); box-shad
   .nav-links { gap: 0; }
   .nav-links a { font-size: 13px; }
   .hero { padding: 48px 0 34px; }
-  h1 { font-size: clamp(42px, 13.2vw, 60px); letter-spacing: -0.052em; }
+  h1 { font-size: clamp(40px, 12.4vw, 56px); letter-spacing: 0.006em; word-spacing: 0.045em; }
   .hero-text { margin-top: 22px; font-size: 18px; }
   .hero-actions { flex-direction: column; margin-top: 30px; }
   .btn { width: 100%; min-height: 46px; }
