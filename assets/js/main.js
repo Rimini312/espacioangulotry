@@ -6,13 +6,16 @@
   const priceNodes = document.querySelectorAll('[data-price]');
   priceNodes.forEach((node) => (node.textContent = cfg.sessionPrice || '60 €'));
 
-  const durationNodes = document.querySelectorAll('[data-duration]');
-  durationNodes.forEach((node) => (node.textContent = cfg.sessionDuration || 'una hora'));
-
   const form = document.querySelector('#booking-form');
   const status = document.querySelector('#form-status');
   const tagTrack = document.querySelector('#tag-track');
+  const tagScroll = document.querySelector('#tag-scroll');
   let agenda = { ocupados: [], etiquetas: [] };
+  let autoScrollFrame = null;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartScroll = 0;
+  let pauseUntil = 0;
 
   function setStatus(message, type) {
     if (!status) return;
@@ -24,15 +27,12 @@
     return !value || value.includes('TU_ENDPOINT') || value.includes('TU_PAYMENT_LINK');
   }
 
-  function pad(value) {
-    return String(value).padStart(2, '0');
-  }
-
   function requestCode(date, time) {
     const cleanDate = String(date || '').replaceAll('-', '');
     const cleanTime = String(time || '').replace(':', '');
-    const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
-    return `EA-${cleanDate}-${cleanTime}-${rand}`;
+    const rand = Math.random().toString(36).slice(2, 7).toUpperCase();
+    const stamp = Date.now().toString(36).slice(-4).toUpperCase();
+    return `EA-${cleanDate}-${cleanTime}-${stamp}${rand}`;
   }
 
   function normalizeSlot(date, time) {
@@ -73,17 +73,60 @@
       agenda = { ocupados: [], etiquetas: [] };
     }
     renderTags();
+    setupTagScroller();
   }
 
   function renderTags() {
     if (!tagTrack) return;
     const fallback = [
       'traer el bucle', 'ordenar una decisión', 'afinar la sensibilidad',
-      'pensar el aburrimiento', 'aumentar creatividad', 'poner lenguaje'
+      'pensar el aburrimiento', 'poner lenguaje', 'cambiar de perspectiva'
     ];
     const tags = Array.isArray(agenda.etiquetas) && agenda.etiquetas.length ? agenda.etiquetas : fallback;
-    const full = tags.concat(tags);
+    const full = tags.concat(tags, tags);
     tagTrack.innerHTML = full.map((tag) => `<span class="tag-pill">${tag}</span>`).join('');
+  }
+
+  function setupTagScroller() {
+    if (!tagScroll || !tagTrack || autoScrollFrame) return;
+
+    function loop() {
+      const now = Date.now();
+      if (!isDragging && now > pauseUntil) {
+        tagScroll.scrollLeft += 0.35;
+        const resetPoint = tagTrack.scrollWidth / 3;
+        if (tagScroll.scrollLeft >= resetPoint) tagScroll.scrollLeft = 0;
+      }
+      autoScrollFrame = requestAnimationFrame(loop);
+    }
+
+    tagScroll.addEventListener('pointerdown', (event) => {
+      isDragging = true;
+      dragStartX = event.clientX;
+      dragStartScroll = tagScroll.scrollLeft;
+      tagScroll.classList.add('is-dragging');
+      tagScroll.setPointerCapture(event.pointerId);
+    });
+
+    tagScroll.addEventListener('pointermove', (event) => {
+      if (!isDragging) return;
+      const delta = event.clientX - dragStartX;
+      tagScroll.scrollLeft = dragStartScroll - delta;
+    });
+
+    function endDrag() {
+      if (!isDragging) return;
+      isDragging = false;
+      pauseUntil = Date.now() + 1200;
+      tagScroll.classList.remove('is-dragging');
+    }
+
+    tagScroll.addEventListener('pointerup', endDrag);
+    tagScroll.addEventListener('pointercancel', endDrag);
+    tagScroll.addEventListener('pointerleave', endDrag);
+    tagScroll.addEventListener('wheel', () => { pauseUntil = Date.now() + 1600; }, { passive: true });
+
+    loop();
   }
 
   function setupModals() {
@@ -140,7 +183,7 @@
       const email = formData.get('email');
 
       if (slotOccupied(date, time)) {
-        setStatus('Ese horario no está disponible. Elige otro horario o indica una alternativa.', 'error');
+        setStatus('Ese horario no está disponible. Elige otro horario.', 'error');
         return;
       }
 
@@ -148,7 +191,7 @@
       const paymentLink = cfg.stripePaymentLink;
 
       if (isPlaceholder(endpoint) || isPlaceholder(paymentLink)) {
-        setStatus('Falta configurar Formspree o Stripe en assets/js/config.js. La web está lista, pero aún no puede enviar ni cobrar.', 'error');
+        setStatus('Falta configurar Formspree o Stripe en assets/js/config.js.', 'error');
         return;
       }
 
@@ -157,7 +200,7 @@
       const submitButton = form.querySelector('button[type="submit"]');
       submitButton.disabled = true;
       submitButton.textContent = 'Preparando pago…';
-      setStatus('Registrando la solicitud…', 'muted');
+      setStatus('Registrando solicitud…', 'muted');
 
       try {
         const res = await fetch(endpoint, {
@@ -172,7 +215,7 @@
         if (!res.ok) throw new Error('No se pudo enviar el formulario');
 
         sessionStorage.setItem('espacio_angulo_solicitud', JSON.stringify(payload));
-        setStatus('Solicitud registrada. Redirigiendo al pago seguro…', 'success');
+        setStatus('Redirigiendo al pago seguro…', 'success');
         window.location.href = appendStripeParams(paymentLink, {
           client_reference_id: id,
           prefilled_email: email
@@ -180,7 +223,7 @@
       } catch (err) {
         submitButton.disabled = false;
         submitButton.textContent = 'Continuar al pago';
-        setStatus('No se pudo enviar la solicitud. Revisa la configuración del formulario o inténtalo de nuevo.', 'error');
+        setStatus('No se pudo enviar la solicitud. Inténtalo de nuevo.', 'error');
       }
     });
   }
