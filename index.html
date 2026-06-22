@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Espacio Ángulo — conversación, escucha y creación</title>
+  <meta name="description" content="Encuentros online de conversación, escucha y creación. Una hora para pensar en voz alta y mirar desde otro ángulo.">
+  <meta name="theme-color" content="#f3efe6">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="site-wrap nav-inner">
+      <a class="brand" href="index.html" aria-label="Espacio Ángulo">
+        <span>Espacio Ángulo</span>
+        <span>conversación · escucha · creación</span>
+      </a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#que-es">Qué es</a>
+        <a href="#formato">Formato</a>
+        <a class="btn" href="#concertar">Concertar cita</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="site-wrap hero-grid">
+        <div>
+          <p class="eyebrow">online · audio · 60 minutos</p>
+          <h1><span>Espacio</span><span>Ángulo</span></h1>
+          <p class="hero-text">Encuentros de conversación, escucha y creación para ordenar una situación, traer una pregunta y mirarla desde otro lugar.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#concertar">Concertar cita</a>
+            <a class="btn secondary" href="#que-es">Leer más</a>
+          </div>
+        </div>
+        <aside class="side-card" aria-label="Idea principal">
+          <p class="quote">Una conversación seria, sin ruido, para pensar con más precisión.</p>
+          <ul class="side-list">
+            <li>Trae una decisión, un bucle, una etapa o una inquietud.</li>
+            <li>La sesión se realiza online, por audio.</li>
+            <li>No hace falta mostrarse. Basta con estar presente y hablar.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="que-es" class="section">
+      <div class="site-wrap two-col">
+        <div>
+          <p class="kicker">Qué es</p>
+          <h2>Un espacio para mirar desde otro ángulo.</h2>
+        </div>
+        <div>
+          <p class="lead">Espacio Ángulo es una sesión individual online de conversación conducida. No se trata de recibir fórmulas, frases hechas ni soluciones automáticas. Se trata de poner lenguaje, escuchar con atención y abrir una perspectiva distinta sobre lo que traes.</p>
+          <div class="micro-grid">
+            <article class="micro-card">
+              <h3>Escucha</h3>
+              <p>Una hora para decirlo sin convertirlo inmediatamente en consejo, diagnóstico o etiqueta.</p>
+            </article>
+            <article class="micro-card">
+              <h3>Perspectiva</h3>
+              <p>Se trabaja con preguntas, contraste, síntesis y devolución externa.</p>
+            </article>
+            <article class="micro-card">
+              <h3>Creación</h3>
+              <p>El pensamiento también puede ordenar procesos creativos, bloqueos, gusto y sensibilidad.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="formato" class="section compact">
+      <div class="site-wrap two-col">
+        <div>
+          <p class="kicker">Formato</p>
+          <h2>Audio online. 60 minutos. <span data-price>60 €</span>.</h2>
+        </div>
+        <div>
+          <p class="lead">El encuentro se realiza por audio. Tras solicitar la cita y completar el pago, recibirás un email de confirmación con el enlace de la sesión. Si el horario solicitado no pudiera confirmarse, se propondrá una alternativa o se realizará la devolución íntegra.</p>
+          <p class="fine-print">Servicio conversacional no sanitario. No realizo terapia, psicoterapia, diagnóstico ni tratamiento psicológico. No sustituye atención médica, psicológica o psiquiátrica.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="concertar" class="section">
+      <div class="site-wrap booking-panel">
+        <div class="price-box">
+          <p class="kicker">Concertar cita</p>
+          <h2>Solicita un encuentro.</h2>
+          <div class="price" data-price>60 €</div>
+          <p class="meta-line"><strong data-duration>60 minutos</strong> · online · audio</p>
+          <p class="meta-line">La solicitud queda registrada antes del pago. Después se abrirá la página segura de Stripe.</p>
+          <p class="fine-print">Para activar el formulario y el pago, sustituye los enlaces de ejemplo en <code>assets/js/config.js</code>.</p>
+        </div>
+
+        <form id="booking-form" class="form" method="post">
+          <div class="field-row">
+            <div class="field">
+              <label for="name">Nombre</label>
+              <input id="name" name="nombre" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="preferred-date">Día preferido</label>
+              <input id="preferred-date" name="dia_preferido" type="date" required>
+            </div>
+            <div class="field">
+              <label for="preferred-time">Hora preferida</label>
+              <input id="preferred-time" name="hora_preferida" type="time" required>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="alt-date">Día alternativo</label>
+              <input id="alt-date" name="dia_alternativo" type="date">
+            </div>
+            <div class="field">
+              <label for="alt-time">Hora alternativa</label>
+              <input id="alt-time" name="hora_alternativa" type="time">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="note">Nota breve opcional</label>
+            <textarea id="note" name="nota" placeholder="Describe de forma general qué te gustaría traer al encuentro. No incluyas información médica o clínica."></textarea>
+          </div>
+
+          <div class="checks">
+            <label class="check">
+              <input name="privacidad_condiciones" type="checkbox" required>
+              <span>He leído y acepto la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a>, las <a href="condiciones.html" target="_blank" rel="noopener">condiciones del servicio</a> y la información sobre <a href="desistimiento.html" target="_blank" rel="noopener">desistimiento</a>.</span>
+            </label>
+            <label class="check">
+              <input name="servicio_no_sanitario" type="checkbox" required>
+              <span>Entiendo que este es un servicio conversacional no sanitario y que no sustituye atención médica, psicológica o psiquiátrica.</span>
+            </label>
+            <label class="check">
+              <input name="inicio_servicio" type="checkbox" required>
+              <span>Acepto que el servicio pueda prestarse en la fecha acordada y entiendo que, una vez realizada íntegramente la sesión, perderé el derecho de desistimiento respecto a dicha sesión.</span>
+            </label>
+          </div>
+
+          <button class="btn full" type="submit">Continuar al pago</button>
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          <p class="form-note">La solicitud está sujeta a confirmación de disponibilidad. Si el horario solicitado no pudiera confirmarse, se propondrá una alternativa o se realizará la devolución íntegra.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="site-wrap footer-inner">
+      <div>© <span data-year></span> Espacio Ángulo</div>
+      <nav aria-label="Legal">
+        <a href="aviso-legal.html">Aviso legal</a>
+        <a href="privacidad.html">Privacidad</a>
+        <a href="condiciones.html">Condiciones</a>
+        <a href="desistimiento.html">Desistimiento</a>
+        <a href="cookies.html">Cookies</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
